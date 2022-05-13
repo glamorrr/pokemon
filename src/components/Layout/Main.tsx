@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import clsx from 'clsx';
 import { Breadcrumb, BreadcrumbItem } from '../Breadcrumb';
+import { Nav } from '../Nav';
 
 interface ComponentProps {
   title: string;
@@ -24,6 +25,7 @@ export const Main: React.FC<ComponentProps> = ({
       </Head>
       <div className="min-h-screen bg-slate-200 text-slate-900">
         <div className={clsx('max-w-screen-sm px-4 pb-8 mx-auto', className)}>
+          <Nav />
           <Breadcrumb breadcrumbs={breadcrumbs} />
           <div>{children}</div>
         </div>

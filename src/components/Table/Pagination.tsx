@@ -24,7 +24,9 @@ const Pagination: React.FC<Props> = ({ pageCount, onPageChange, forcePage }) => 
       previousLabel="Previous"
       className="flex items-center"
       pageLinkClassName={linkStyle}
-      activeLinkClassName={clsx('bg-indigo-200 text-indigo-900 font-semibold hover:bg-indigo-200')}
+      activeLinkClassName={clsx(
+        'border-indigo-400 bg-indigo-100 text-indigo-600 font-semibold hover:bg-indigo-100'
+      )}
       nextLinkClassName={clsx(linkStyle, 'w-auto px-4')}
       previousLinkClassName={clsx(linkStyle, 'w-auto px-4')}
       disabledLinkClassName={clsx('bg-gray-50 cursor-not-allowed hover:bg-gray-50 text-gray-400')}

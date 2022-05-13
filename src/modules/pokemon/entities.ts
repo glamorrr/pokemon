@@ -1,7 +1,7 @@
 export interface Pokemon {
   name: string;
   sprites: {
-    backDefault: string;
-    frontDefault: string;
+    backDefault: string | null;
+    frontDefault: string | null;
   };
 }

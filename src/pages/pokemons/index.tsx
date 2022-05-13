@@ -4,9 +4,10 @@ import { Dropdown } from '@/components/Select';
 import { Table } from '@/components/Table';
 import type { ResourceList } from '@/modules/common/types';
 import { useGetPokemons } from '@/modules/pokemon/hook';
+import { Route } from '@/utils/const';
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import type { Column } from 'react-table';
 
 const Home: NextPage = () => {
@@ -29,7 +30,7 @@ const Home: NextPage = () => {
         accessor: 'name',
         Cell: ({ value }) => {
           return (
-            <Button href={`/pokemons/${value}`} size="sm">
+            <Button href={Route.Pokemon(value)} size="sm">
               View
             </Button>
           );
@@ -46,13 +47,13 @@ const Home: NextPage = () => {
 
   const onPageChange = (event: any) => {
     const newOffset = event.selected * +limit;
-    router.push({ pathname: '/', query: { offset: newOffset, limit } });
+    router.push({ pathname: Route.Pokemons, query: { offset: newOffset, limit } });
   };
 
   return (
     <Main
       title="Pokemons"
-      breadcrumbs={[{ title: 'Pokemons', href: '/', isCurrent: true }]}
+      breadcrumbs={[{ title: 'Pokemons', href: Route.Pokemons, isCurrent: true }]}
       className="flex flex-col items-center"
     >
       <Table
@@ -73,7 +74,7 @@ const Home: NextPage = () => {
         ]}
         onChange={(option) => {
           router.push({
-            pathname: '/',
+            pathname: Route.Pokemons,
             query: { offset, limit: option?.value },
           });
         }}

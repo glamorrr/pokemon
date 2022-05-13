@@ -17,7 +17,7 @@ export const Breadcrumb: React.FC<ComponentProps> = ({ breadcrumbs }) => {
   );
 
   return (
-    <nav aria-label="Breadcrumb" className="w-full py-8">
+    <nav aria-label="Breadcrumb" className="w-full pt-4 pb-8">
       <ol className="flex items-center justify-start space-x-2">
         {breadcrumbs.map(({ isCurrent, href, title }, i) => {
           return (
