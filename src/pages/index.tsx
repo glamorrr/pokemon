@@ -65,6 +65,7 @@ const Home: NextPage = () => {
       <Dropdown
         instanceId="limit"
         className="mx-auto mt-4 shadow-sm w-max"
+        value={{ label: `Show ${limit}`, value: +limit }}
         options={[
           { label: 'Show 5', value: 5 },
           { label: 'Show 7', value: 7 },
@@ -76,7 +77,6 @@ const Home: NextPage = () => {
             query: { offset, limit: option?.value },
           });
         }}
-        defaultValue={{ label: 'Show 5', value: 5 }}
       />
     </Main>
   );

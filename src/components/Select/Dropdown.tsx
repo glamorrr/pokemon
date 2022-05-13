@@ -12,7 +12,7 @@ interface Props {
   instanceId: string;
   className?: string;
   isSearchable?: boolean;
-  defaultValue?: SingleValue<Option>;
+  value?: SingleValue<Option>;
   onChange?(option: SingleValue<Option>): void;
 }
 
@@ -20,7 +20,7 @@ export const Dropdown: React.FC<Props> = ({
   options,
   className,
   onChange,
-  defaultValue,
+  value,
   instanceId,
   isSearchable = false,
 }) => {
@@ -30,7 +30,7 @@ export const Dropdown: React.FC<Props> = ({
       instanceId={instanceId}
       isSearchable={isSearchable}
       options={options}
-      defaultValue={defaultValue}
+      value={value}
       onChange={onChange}
       // Remove base styles
       styles={{
