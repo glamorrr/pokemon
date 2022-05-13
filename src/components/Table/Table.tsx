@@ -8,6 +8,7 @@ interface ComponentProps {
   items: Array<any>;
   onPageChange(e: any): void;
   pageCount: number;
+  forcePage: number;
 }
 
 export const Table: React.FC<ComponentProps> = ({
@@ -15,6 +16,7 @@ export const Table: React.FC<ComponentProps> = ({
   items,
   onPageChange,
   pageCount: controlledPageCount,
+  forcePage,
 }) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable(
     {
@@ -83,7 +85,11 @@ export const Table: React.FC<ComponentProps> = ({
           })}
         </tbody>
       </table>
-      <Pagination pageCount={controlledPageCount} onPageChange={onPageChange} />
+      <Pagination
+        forcePage={forcePage}
+        pageCount={controlledPageCount}
+        onPageChange={onPageChange}
+      />
     </div>
   );
 };

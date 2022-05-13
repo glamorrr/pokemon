@@ -10,34 +10,26 @@ import { useEffect, useMemo, useState } from 'react';
 import type { Column } from 'react-table';
 
 const Home: NextPage = () => {
-  const [offset, setOffset] = useState(0);
-  const [limit, setLimit] = useState(5);
   const router = useRouter();
-  const { data } = useGetPokemons({ offset, limit });
+  const { offset = 0, limit = 5 } = router.query;
+  const { data } = useGetPokemons({ offset: +offset, limit: +limit });
 
-  const pageCount = Math.max(1, Math.ceil((data?.count || 0) / limit));
-
-  useEffect(() => {
-    router.push('/', { query: { offset, limit } });
-  }, [offset, limit]);
-
-  const onPageChange = (event: any) => {
-    const newOffset = (event.selected * limit) % (data?.count as number);
-    setOffset(newOffset);
-  };
+  const pageCount = Math.max(1, Math.ceil((data?.count || 0) / +limit));
+  const forcePage = Math.ceil(+offset / +limit);
 
   const tableColumns = useMemo<Column<ResourceList['results'][number]>[]>(
     () => [
       {
         Header: 'Name',
-        accessor: 'name', // accessor is the "key" in the data
+        accessor: 'name',
       },
       {
+        id: 'viewPokemon',
         Header: 'Action',
-        accessor: 'url',
+        accessor: 'name',
         Cell: ({ value }) => {
           return (
-            <Button href={value} size="sm">
+            <Button href={`/pokemons/${value}`} size="sm">
               View
             </Button>
           );
@@ -52,29 +44,37 @@ const Home: NextPage = () => {
     [data?.results]
   );
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  const onPageChange = (event: any) => {
+    const newOffset = event.selected * +limit;
+    router.push({ pathname: '/', query: { offset: newOffset, limit } });
+  };
 
   return (
-    <Main title="Pokemons" className="flex flex-col items-center">
+    <Main
+      title="Pokemons"
+      breadcrumbs={[{ title: 'Pokemons', href: '/', isCurrent: true }]}
+      className="flex flex-col items-center"
+    >
       <Table
         columns={tableColumns}
         items={tableData}
         onPageChange={onPageChange}
         pageCount={pageCount}
+        forcePage={forcePage}
       />
       <Dropdown
         instanceId="limit"
-        className="mt-4 shadow-sm"
+        className="mx-auto mt-4 shadow-sm w-max"
         options={[
           { label: 'Show 5', value: 5 },
           { label: 'Show 7', value: 7 },
           { label: 'Show 9', value: 9 },
         ]}
         onChange={(option) => {
-          console.log(option);
-          setLimit(option?.value as number);
+          router.push({
+            pathname: '/',
+            query: { offset, limit: option?.value },
+          });
         }}
         defaultValue={{ label: 'Show 5', value: 5 }}
       />
