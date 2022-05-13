@@ -17,7 +17,7 @@ export const useFavoritePokemons = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
   useEffect(() => {
-    setPokemons(LocalStorageService.get('favoritePokemons'));
+    setPokemons(LocalStorageService.get('favoritePokemons') || []);
   }, []);
 
   useEffect(() => {

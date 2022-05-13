@@ -27,7 +27,7 @@ export const Main: React.FC<ComponentProps> = ({
         <div className={clsx('max-w-screen-sm px-4 pb-8 mx-auto', className)}>
           <Nav />
           <Breadcrumb breadcrumbs={breadcrumbs} />
-          <div>{children}</div>
+          <div className="w-full">{children}</div>
         </div>
       </div>
     </>
