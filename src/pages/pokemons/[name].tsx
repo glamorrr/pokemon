@@ -16,7 +16,6 @@ const Pokemon: NextPage = () => {
   const router = useRouter();
   const { data } = useGetPokemon(router.query.name as string);
   const { pokemons: favoritePokemons, create, remove } = useFavoritePokemons();
-  console.log(data);
   const isFavorite = favoritePokemons.find((pokemon) => pokemon.name === data?.name);
 
   const onCreate = () => {

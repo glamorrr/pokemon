@@ -5,25 +5,25 @@ import { Route } from '@/utils/const';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import { GlobeAltIcon } from '@heroicons/react/outline';
+import { UnderlineLink } from '@/components/Link';
 
-const FavoritePokemons: NextPage = () => {
+const PageNotFound: NextPage = () => {
   return (
     <Main
-      title="Pokemons"
-      breadcrumbs={[{ title: 'Home', href: Route.Home, isCurrent: true }]}
+      title="404: This page could not be found"
+      breadcrumbs={[]}
       className="flex flex-col items-center"
     >
-      <div className="flex flex-col items-center space-y-6">
+      <div className="flex flex-col items-center space-y-8">
         <Card className="!p-0  items-center flex overflow-hidden rounded">
-          <Image src="/home.gif" alt="" width={475} height={300} objectFit="cover" />
+          <Image src="/404.gif" alt="" width={475} height={300} objectFit="cover" />
         </Card>
-        <Button href={Route.Pokemons}>
-          <GlobeAltIcon className="w-5 h-5 mr-2" />
-          <span>Browse Pokemons</span>
-        </Button>
+        <Card>
+          <h1 className="text-5xl font-medium">404</h1>
+        </Card>
       </div>
     </Main>
   );
 };
 
-export default FavoritePokemons;
+export default PageNotFound;
