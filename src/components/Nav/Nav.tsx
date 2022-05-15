@@ -16,6 +16,10 @@ const routes = [
     title: 'Favorite Pokemons',
     href: Route.FavoritePokemons,
   },
+  {
+    title: 'Items',
+    href: Route.Items,
+  },
 ];
 
 export const Nav: React.FC = () => {
