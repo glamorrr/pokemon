@@ -33,7 +33,7 @@ export const Nav: React.FC = () => {
               <Link href={href}>
                 <a
                   className={clsx(
-                    'block px-4 py-2 font-medium bg-white rounded-md shadow-sm hover:text-indigo-600 border-[1px] border-slate-300 hover:border-indigo-400',
+                    'transition-colors block px-4 py-2 font-medium bg-white rounded-md shadow-sm hover:text-indigo-600 border-[1px] border-slate-300 hover:border-indigo-400',
                     isCurrent && 'text-indigo-600  border-indigo-400 '
                   )}
                 >

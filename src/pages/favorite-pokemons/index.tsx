@@ -1,15 +1,15 @@
 import { Button } from '@/components/Button';
 import { Card } from '@/components/Card';
 import { Main } from '@/components/Layout';
+import { UnderlineLink } from '@/components/Link';
 import { useFavoritePokemons } from '@/modules/pokemon/hook';
 import { Route } from '@/utils/const';
 import { GlobeAltIcon } from '@heroicons/react/outline';
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 
 const FavoritePokemons: NextPage = () => {
-  const { pokemons, create, remove } = useFavoritePokemons();
+  const { pokemons } = useFavoritePokemons();
 
   return (
     <Main
@@ -31,13 +31,8 @@ const FavoritePokemons: NextPage = () => {
                     height={192}
                   />
                 </Card>
-                {/* TODO: make a custom link on hover */}
                 <p className="mt-2 font-semibold tracking-wide text-semibold">
-                  <Link href={Route.Pokemon(pokemon.name)}>
-                    <a className="hover:underline hover:decoration-indigo-800 hover:text-indigo-700">
-                      {pokemon.name}
-                    </a>
-                  </Link>
+                  <UnderlineLink href={Route.Pokemon(pokemon.name)}>{pokemon.name}</UnderlineLink>
                 </p>
               </div>
             );

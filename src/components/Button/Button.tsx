@@ -11,11 +11,12 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement> {
 
 export const Button: React.FC<Props> = ({ children, size = 'md', href, className, ...rest }) => {
   const baseStyle = clsx(
-    'inline-flex items-center font-medium justify-center whitespace-nowrap  bg-indigo-500 rounded-md text-slate-50 hover:bg-indigo-600 active:bg-indigo-700 focus:ring-2 focus:ring-offset-2 focus:ring-indigo-400/60',
+    'inline-flex items-center font-medium justify-center whitespace-nowrap bg-indigo-500 rounded-md text-slate-50 transition-all',
+    'hover:bg-indigo-600 active:bg-indigo-700  focus:ring-indigo-400/50',
     className
   );
-  const sm = clsx('px-3 py-1 text-sm ');
-  const md = clsx('px-4 py-2 text-base');
+  const sm = clsx('px-3 py-1 text-sm focus:ring-2');
+  const md = clsx('px-4 py-2 text-base focus:ring-4');
   const buttonStyle = clsx(baseStyle, size === 'sm' && sm, size === 'md' && md);
 
   return (

@@ -6,7 +6,7 @@ import { Route } from '@/utils/const';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { HeartIcon as HeartIconOutline } from '@heroicons/react/outline';
+import { HandIcon, HeartIcon } from '@heroicons/react/outline';
 import { Pokemon } from '@/modules/pokemon/entities';
 import clsx from 'clsx';
 import toast from 'react-hot-toast';
@@ -27,6 +27,12 @@ const Pokemon: NextPage = () => {
   const onRemove = () => {
     remove(router.query.name as string);
     toast.custom((t) => <Toast t={t} description={`${data?.name} is removed to favorites`} />);
+  };
+
+  const onGreet = () => {
+    toast.custom((t) => (
+      <Toast t={t} variant="secondary" description={`👋 hi, you can call me ${data?.name}`} />
+    ));
   };
 
   return (
@@ -63,18 +69,27 @@ const Pokemon: NextPage = () => {
               <p className="font-semibold tracking-wide text-gray-400">Pokemon</p>
               <p className="text-2xl">{data.name}</p>
             </Card>
-            <button
-              onClick={isFavorite ? onRemove : onCreate}
-              className={clsx(
-                'self-start p-2 shadow-sm bg-white border-[1px] border-slate-300 rounded-md hover:bg-slate-50',
-                isFavorite && 'bg-indigo-500 hover:bg-indigo-500'
-              )}
-              title={isFavorite ? 'Remove from favorites' : 'Favorite'}
-            >
-              <HeartIconOutline
-                className={clsx('w-8 text-indigo-500', isFavorite && 'text-white')}
-              />
-            </button>
+            <div className="flex space-x-4">
+              <button
+                onClick={isFavorite ? onRemove : onCreate}
+                className={clsx(
+                  'self-start p-2 transition-colors shadow-sm bg-white border-[1px] border-slate-300 rounded-md hover:bg-slate-50',
+                  isFavorite && 'bg-indigo-500 hover:bg-indigo-500'
+                )}
+                title={isFavorite ? 'Remove from favorites' : 'Favorite'}
+              >
+                <HeartIcon className={clsx('w-8 text-indigo-500', isFavorite && 'text-white')} />
+              </button>
+              <button
+                onClick={onGreet}
+                className={clsx(
+                  'w-[50px] h-[50px] self-start p-2 transition-colors shadow-sm bg-white border-[1px] border-slate-300 rounded-md hover:bg-slate-50'
+                )}
+                title="Greet"
+              >
+                <div className={clsx('text-xl')}>👋</div>
+              </button>
+            </div>
           </div>
         </div>
       )}

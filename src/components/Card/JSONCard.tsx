@@ -8,7 +8,7 @@ interface ComponentProps {
 
 export const JSONCard: React.FC<ComponentProps> = ({ className, data }) => {
   return (
-    <Card className={clsx('p-0', className)}>
+    <Card className={clsx('!p-0', className)}>
       <div className="py-2 text-center border-b-[1px] border-slate-300">
         <p>Data</p>
       </div>
